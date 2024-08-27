@@ -89,7 +89,10 @@ nav {
 }
 
 nav a.router-link-exact-active {
-  color: #aace48;
+  color: #000;
+  background-color: #aace48;
+  height: 100%;
+  padding: 0 10px;
 }
 
 nav a.router-link-exact-active:hover {

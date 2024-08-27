@@ -5,7 +5,7 @@
     </div>
 
     <div class="px-8 mb-4 grid grid-cols-1 gap-10 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
-      <div v-for="item in perfume" :key="item.id" class="shadow-lg px-3 py-2">
+      <div v-for="item in paginatedPerfume" :key="item.id" class="shadow-lg px-3 py-2">
         <div>
           <img :src="item.img" alt="Men Perfume" class="h-64 w-full object-cover md:h-64 xl:h-80" />
         </div>
@@ -18,11 +18,23 @@
         </div>
       </div>
     </div>
+
+    <div class="flex justify-center my-8">
+      <button
+        v-for="page in totalPages"
+        :key="page"
+        @click="currentPage = page"
+        :class="['mx-2 px-4 py-2 border', { 'bg-[#e0b7b7] text-white': currentPage === page }]"
+      >
+        {{ page }}
+      </button>
+    </div>
   </div>
 </template>
 
 <script setup>
 import { RouterLink } from 'vue-router'
+import { ref, computed } from 'vue'
 
 const perfume = [
   {
@@ -71,6 +83,17 @@ const perfume = [
     img: '/public/pef2.jpg'
   }
 ]
+
+const currentPage = ref(1)
+const itemsPerPage = 12
+
+const totalPages = computed(() => Math.ceil(perfume.length / itemsPerPage))
+
+const paginatedPerfume = computed(() => {
+  const start = (currentPage.value - 1) * itemsPerPage
+  const end = start + itemsPerPage
+  return perfume.slice(start, end)
+})
 </script>
 
 <style lang="scss" scoped></style>

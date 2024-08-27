@@ -11,7 +11,7 @@
         </div>
       </div>
 
-      <div class="hero2 py-6 pl-4 w-full relative -z-10 xl:pt-10">
+      <div class="hero2 py-6 pl-4 w-full relative xl:pt-10">
         <div class="mb-72 lg:mb-90">
           <p class="text-white">
             It's Okay To <br />
@@ -58,11 +58,11 @@
     <!-- LATEST ARRIVAL -->
     <div class="mx-auto w-[90%]">
       <div class="mb-3 mt-4 lg:mb-6">
-        <h2 class="sm:text-center lg:text-2xl">LATEST ARRIVAL</h2>
+        <h2 class="sm:text-center lg:text-2xl lg:text-left">LATEST ARRIVAL</h2>
       </div>
 
       <div
-        class="grid grid-cols-1 gap-6 sm:mx-auto sm:w-3/5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+        class="grid grid-cols-1 gap-6 sm:mx-auto sm:w-3/5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 lg:w-full"
       >
         <div v-for="item in latest" :key="item.id" class="shadow-lg px-3 py-2">
           <div>

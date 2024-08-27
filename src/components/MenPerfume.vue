@@ -4,7 +4,9 @@
       <RouterLink to="/">HOME</RouterLink>
     </div>
 
-    <div class="px-8 mb-4 grid grid-cols-1 gap-10 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
+    <div
+      class="px-8 mb-4 grid grid-cols-1 gap-10 sm:grid-cols-2 md:grid-cols-3 lg:px-14 xl:grid-cols-4"
+    >
       <div v-for="item in paginatedPerfume" :key="item.id" class="shadow-lg px-3 py-2">
         <div>
           <img :src="item.img" alt="Men Perfume" class="h-64 w-full object-cover md:h-64 xl:h-80" />
@@ -19,7 +21,7 @@
       </div>
     </div>
 
-    <div class="flex justify-center mt-8">
+    <div class="flex justify-center my-8">
       <button
         v-for="page in totalPages"
         :key="page"
@@ -105,7 +107,7 @@ const perfume = [
 ]
 
 const currentPage = ref(1)
-const itemsPerPage = 9
+const itemsPerPage = 12
 
 const totalPages = computed(() => Math.ceil(perfume.length / itemsPerPage))
 
