@@ -61,7 +61,9 @@
         <h2 class="sm:text-center lg:text-2xl">LATEST ARRIVAL</h2>
       </div>
 
-      <div class="grid grid-cols-1 gap-6 sm:mx-auto sm:w-3/5 md:grid-cols-3 lg:grid-cols-4">
+      <div
+        class="grid grid-cols-1 gap-6 sm:mx-auto sm:w-3/5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+      >
         <div v-for="item in latest" :key="item.id" class="shadow-lg px-3 py-2">
           <div>
             <img
@@ -101,7 +103,7 @@
           >MEN</RouterLink
         >
         <RouterLink
-          to="/men"
+          to="/women"
           class="bg-[#e0b7b7] text-white py-1 px-4 rounded md:text-lg md:py-2 md:px-5"
           >WOMEN</RouterLink
         >

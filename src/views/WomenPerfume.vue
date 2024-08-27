@@ -1,9 +1,9 @@
-<template>
-  <div></div>
-</template>
-
-<script>
-export default {}
+<script setup>
+import WomenPerfume from '../components/WomenPerfume.vue'
 </script>
 
-<style lang="scss" scoped></style>
+<template>
+  <main>
+    <WomenPerfume />
+  </main>
+</template>

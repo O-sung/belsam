@@ -1,10 +1,10 @@
 <template>
-  <div>
-    <div class="ml-4 mt-16 mb-8 px-4 py-1 bg-[#e0b7b7] inline-block">
+  <div class="pt-16 lg:pt-20 xl:pt-24">
+    <div class="ml-4 mb-8 px-4 py-1 bg-[#e0b7b7] inline-block lg:hidden">
       <RouterLink to="/">HOME</RouterLink>
     </div>
 
-    <div class="px-8 mb-4 grid grid-cols-1 gap-10 md:grid-cols-3 lg:grid-cols-4">
+    <div class="px-8 mb-4 grid grid-cols-1 gap-10 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
       <div v-for="item in perfume" :key="item.id" class="shadow-lg px-3 py-2">
         <div>
           <img :src="item.img" alt="Men Perfume" class="h-64 w-full object-cover md:h-64 xl:h-80" />
