@@ -3,18 +3,33 @@ import { RouterLink, RouterView } from 'vue-router'
 </script>
 
 <template>
-  <header class="fixed w-full">
-    <div class="bg-[#e0b7b7] bg-opacity-100 py-2 px-3">
-      <nav class="hidden lg:block">
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">Perfume</RouterLink>
-        <RouterLink to="/about">About Us</RouterLink>
-        <RouterLink to="/about">Contact Us</RouterLink>
-        <RouterLink to="/about">Blog</RouterLink>
+  <header class="fixed w-full z-30">
+    <div class="bg-[#e0b7b7] bg-opacity-100 py-2 px-3 xl:py-4">
+      <nav class="hidden lg:flex justify-between items-center">
+        <div>
+          <img src="/public/logo.jpg" class="w-10 h-10" />
+        </div>
+
+        <div class="flex gap-10">
+          <RouterLink to="/" class="text-base">Home</RouterLink>
+          <RouterLink to="/about" class="text-base">Perfume</RouterLink>
+          <RouterLink to="/about" class="text-base">About Us</RouterLink>
+          <RouterLink to="/about" class="text-base">Contact Us</RouterLink>
+          <RouterLink to="/about" class="text-base">Blog</RouterLink>
+        </div>
 
         <div>
-          <input type="text" placeholder="Search All Items" />
-          <button class="px-3 rounded-full bg-[#aace48]" id="search-btn">SEARCH</button>
+          <input
+            type="text"
+            placeholder="Search All Items"
+            class="px-4 py-1 text-center border border-gray-500 border-e-0 outline-none rounded-s-full"
+          />
+          <button
+            class="px-5 py-1 border-gray-500 border border-l-0 text-white -ml-3 rounded-full bg-[#aace48]"
+            id="search-btn"
+          >
+            SEARCH
+          </button>
         </div>
       </nav>
 
