@@ -58,11 +58,11 @@
     <!-- LATEST ARRIVAL -->
     <div class="mx-auto w-[90%]">
       <div class="mb-3 mt-4 lg:mb-6">
-        <h2 class="lg:text-2xl">LATEST ARRIVAL</h2>
+        <h2 class="sm:text-center lg:text-2xl">LATEST ARRIVAL</h2>
       </div>
 
-      <div class="grid grid-cols-1 gap-6 md:grid-cols-3 lg:grid-cols-3">
-        <div v-for="item in latest" :key="item.id">
+      <div class="grid grid-cols-1 gap-6 sm:mx-auto sm:w-3/5 md:grid-cols-3 lg:grid-cols-4">
+        <div v-for="item in latest" :key="item.id" class="shadow-lg px-3 py-2">
           <div>
             <img
               :src="item.latestImg"
@@ -71,17 +71,19 @@
             />
           </div>
 
-          <div>
-            <p>{{ item.pefName }}</p>
-          </div>
+          <div class="flex items-center justify-between mt-3">
+            <div>
+              <p class="text-base">{{ item.pefName }}</p>
+            </div>
 
-          <div>
-            <p>{{ item.pefPrice }}</p>
+            <div>
+              <p>{{ item.pefPrice }}</p>
+            </div>
           </div>
         </div>
       </div>
 
-      <div>
+      <div class="mt-4">
         <RouterLink to="/">SEE MORE &rarr;</RouterLink>
       </div>
     </div>
@@ -136,6 +138,12 @@ const latest = [
   },
   {
     id: 3,
+    latestImg: '/public/pef6.jpg',
+    pefName: 'Wishbone',
+    pefPrice: '$112'
+  },
+  {
+    id: 4,
     latestImg: '/public/pef6.jpg',
     pefName: 'Wishbone',
     pefPrice: '$112'

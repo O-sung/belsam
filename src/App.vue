@@ -22,10 +22,10 @@ import { RouterLink, RouterView } from 'vue-router'
           <input
             type="text"
             placeholder="Search All Items"
-            class="px-4 py-1 text-center border border-gray-500 border-e-0 outline-none rounded-s-full"
+            class="px-4 py-1 text-center border border-[#aace48] border-e-0 outline-none rounded-s-full"
           />
           <button
-            class="px-5 py-1 border-gray-500 border border-l-0 text-white -ml-3 rounded-full bg-[#aace48]"
+            class="px-5 py-1 border-[#aace48] border border-l-0 text-white -ml-3 rounded-full bg-[#aace48]"
             id="search-btn"
           >
             SEARCH
