@@ -17,6 +17,17 @@
           <button>More Info</button>
         </div>
       </div>
+
+      <!-- <div v-for="item in paginatedPerfume" :key="item.id" class="shadow-lg px-3 py-2">
+        <div>
+          <img :src="item.imgUrl" alt="Men Perfume" class="h-64 w-full object-cover md:h-64 xl:h-80" />
+        </div>
+        <p class="mt-4">MEN PERFUME</p>
+        <div class="flex justify-between items-center mt-1 mb-3">
+          <p>{{ item.price }}</p>
+          <button>More Info</button>
+        </div>
+      </div> -->
     </div>
 
     <div class="flex justify-center my-8">
@@ -35,6 +46,8 @@
 <script setup>
 import { RouterLink } from 'vue-router'
 import { ref, computed } from 'vue'
+// import { ref, computed, onMounted } from 'vue'
+// import axios from 'axios'
 
 const perfume = [
   {
@@ -83,6 +96,18 @@ const perfume = [
     img: '/public/pef2.jpg'
   }
 ]
+
+// const perfumes = ref([])
+// const fetchPerfumes = async () => {
+//   try {
+//     const response = await axios.get('/api/perfumes')
+//     perfumes.value = response.data
+//   } catch (error) {
+//     console.error('Error fetching perfumes:', error)
+//   }
+// }
+
+// onMounted(fetchPerfumes)
 
 const currentPage = ref(1)
 const itemsPerPage = 12

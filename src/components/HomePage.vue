@@ -64,10 +64,10 @@
       <div
         class="grid grid-cols-1 gap-6 sm:mx-auto sm:w-3/5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 lg:w-full"
       >
-        <div v-for="item in latest" :key="item.id" class="shadow-lg px-3 py-2">
+        <div v-for="item in perfume" :key="item.id" class="shadow-lg px-3 py-2">
           <div>
             <img
-              :src="item.latestImg"
+              :src="item.perfumeImg"
               alt="Perfume Image"
               class="h-72 w-full object-cover md:h-64 xl:h-80"
             />
@@ -83,6 +83,21 @@
             </div>
           </div>
         </div>
+
+        <!-- <div v-for="item in perfume" :key="item.id" class="shadow-lg px-3 py-2">
+          <div>
+            <img
+              :src="item.imgUrl"
+              alt="Perfume Image"
+              class="h-64 w-full object-cover md:h-64 xl:h-80"
+            />
+          </div>
+          <p class="mt-4">MEN PERFUME</p>
+          <div class="flex justify-between items-center mt-1 mb-3">
+            <p>{{ item.price }}</p>
+            <button>More Info</button>
+          </div>
+        </div> -->
       </div>
 
       <div class="mt-4">
@@ -124,33 +139,48 @@
 
 <script setup>
 import { RouterLink } from 'vue-router'
+// import { ref, computed, onMounted } from 'vue'
+// import axios from 'axios'
 
-const latest = [
+const perfume = [
   {
     id: 1,
-    latestImg: '/public/pef11.jpg',
+    perfumeImg: '/public/pef11.jpg',
     pefName: '24K',
     pefPrice: '$112'
   },
   {
     id: 2,
-    latestImg: '/public/pef10.jpg',
+    perfumeImg: '/public/pef10.jpg',
     pefName: 'Colour Me',
     pefPrice: '$112'
   },
   {
     id: 3,
-    latestImg: '/public/pef6.jpg',
+    perfumeImg: '/public/pef6.jpg',
     pefName: 'Wishbone',
     pefPrice: '$112'
   },
   {
     id: 4,
-    latestImg: '/public/pef6.jpg',
+    perfumeImg: '/public/pef6.jpg',
     pefName: 'Wishbone',
     pefPrice: '$112'
   }
 ]
+
+// const perfumes = ref([])
+
+// const fetchPerfumes = async () => {
+//   try {
+//     const response = await axios.get('/api/perfumes')
+//     perfumes.value = response.data
+//   } catch (error) {
+//     console.error('Error fetching perfumes:', error)
+//   }
+// }
+
+// onMounted(fetchPerfumes)
 </script>
 
 <style scoped>

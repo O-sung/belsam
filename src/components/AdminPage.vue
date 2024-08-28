@@ -2,36 +2,113 @@
   <div class="pt-16 lg:pt-20 xl:pt-24 px-8">
     <h1 class="text-2xl font-bold mb-4">Admin - Upload New Perfume</h1>
 
-    <form @submit.prevent="submitForm" class="shadow-lg p-8">
-      <div class="mb-4">
-        <label class="block text-gray-700 text-sm font-bold mb-2" for="price">Price:</label>
-        <input
-          v-model="price"
-          type="text"
-          id="price"
-          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          required
-        />
-      </div>
+    <div class="shadow-lg p-8 mb-8">
+      <h2 class="text-xl font-semibold mb-4">Men Perfume</h2>
+      <form @submit.prevent="submitForm('men')">
+        <div class="mb-4">
+          <label class="block text-gray-700 text-sm font-bold mb-2" for="menPrice">Price:</label>
+          <input
+            v-model="menPrice"
+            type="text"
+            id="menPrice"
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            required
+          />
+        </div>
 
-      <div class="mb-4">
-        <label class="block text-gray-700 text-sm font-bold mb-2" for="image">Perfume Image:</label>
-        <input
-          @change="handleImageUpload"
-          type="file"
-          id="image"
-          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          required
-        />
-      </div>
+        <div class="mb-4">
+          <label class="block text-gray-700 text-sm font-bold mb-2" for="menImage"
+            >Perfume Image:</label
+          >
+          <input
+            @change="handleImageUpload('men', $event)"
+            type="file"
+            id="menImage"
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            required
+          />
+        </div>
 
-      <button
-        type="submit"
-        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-      >
-        Upload
-      </button>
-    </form>
+        <button
+          type="submit"
+          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+        >
+          Upload Men Perfume
+        </button>
+      </form>
+    </div>
+
+    <div class="shadow-lg p-8 mb-8">
+      <h2 class="text-xl font-semibold mb-4">Women Perfume</h2>
+      <form @submit.prevent="submitForm('women')">
+        <div class="mb-4">
+          <label class="block text-gray-700 text-sm font-bold mb-2" for="womenPrice">Price:</label>
+          <input
+            v-model="womenPrice"
+            type="text"
+            id="womenPrice"
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            required
+          />
+        </div>
+
+        <div class="mb-4">
+          <label class="block text-gray-700 text-sm font-bold mb-2" for="womenImage"
+            >Perfume Image:</label
+          >
+          <input
+            @change="handleImageUpload('women', $event)"
+            type="file"
+            id="womenImage"
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            required
+          />
+        </div>
+
+        <button
+          type="submit"
+          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+        >
+          Upload Women Perfume
+        </button>
+      </form>
+    </div>
+
+    <div class="shadow-lg p-8 mb-8">
+      <h2 class="text-xl font-semibold mb-4">Latest Arrival Perfume</h2>
+      <form @submit.prevent="submitForm('latest')">
+        <div class="mb-4">
+          <label class="block text-gray-700 text-sm font-bold mb-2" for="latestPrice">Price:</label>
+          <input
+            v-model="latestPrice"
+            type="text"
+            id="latestPrice"
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            required
+          />
+        </div>
+
+        <div class="mb-4">
+          <label class="block text-gray-700 text-sm font-bold mb-2" for="latestImage"
+            >Perfume Image:</label
+          >
+          <input
+            @change="handleImageUpload('latest', $event)"
+            type="file"
+            id="latestImage"
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            required
+          />
+        </div>
+
+        <button
+          type="submit"
+          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+        >
+          Upload Latest Arrival Perfume
+        </button>
+      </form>
+    </div>
   </div>
 </template>
 
@@ -39,32 +116,55 @@
 import { ref } from 'vue'
 import axios from 'axios'
 
-const price = ref('')
-let imageFile = null
+const menPrice = ref('')
+const womenPrice = ref('')
+const latestPrice = ref('')
 
-const handleImageUpload = (e) => {
-  imageFile = e.target.files[0]
+let menImageFile = null
+let womenImageFile = null
+let latestImageFile = null
+
+const handleImageUpload = (type, event) => {
+  const file = event.target.files[0]
+  if (type === 'men') menImageFile = file
+  if (type === 'women') womenImageFile = file
+  if (type === 'latest') latestImageFile = file
 }
 
-const submitForm = async () => {
+const submitForm = async (type) => {
   const formData = new FormData()
-  formData.append('price', price.value)
-  formData.append('image', imageFile)
+
+  if (type === 'men') {
+    formData.append('price', menPrice.value)
+    formData.append('image', menImageFile)
+  } else if (type === 'women') {
+    formData.append('price', womenPrice.value)
+    formData.append('image', womenImageFile)
+  } else if (type === 'latest') {
+    formData.append('price', latestPrice.value)
+    formData.append('image', latestImageFile)
+  }
 
   try {
-    const response = await axios.post('/api/perfumes', formData, {
+    await axios.post(`/api/perfumes/${type}`, formData, {
       headers: {
         'Content-Type': 'multipart/form-data'
       }
     })
-    console.log(response)
-
-    alert('Perfume uploaded successfully!')
-    price.value = ''
-    imageFile = null
+    alert(`${type.charAt(0).toUpperCase() + type.slice(1)} Perfume uploaded successfully!`)
+    if (type === 'men') {
+      menPrice.value = ''
+      menImageFile = null
+    } else if (type === 'women') {
+      womenPrice.value = ''
+      womenImageFile = null
+    } else if (type === 'latest') {
+      latestPrice.value = ''
+      latestImageFile = null
+    }
   } catch (error) {
-    console.error('Error uploading perfume:', error)
-    alert('Failed to upload perfume. Please try again.')
+    console.error(`Error uploading ${type} perfume:`, error)
+    alert(`Failed to upload ${type} perfume. Please try again.`)
   }
 }
 </script>
