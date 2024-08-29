@@ -47,6 +47,4 @@ const deleteImage = async (id) => {
 }
 </script>
 
-<style scoped>
-/* Add any additional styles here */
-</style>
+<style scoped></style>
