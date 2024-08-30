@@ -31,7 +31,7 @@ const fetchMenPerfumes = async () => {
     const response = await axios.get('/api/perfumes/men')
     menPerfumes.value = response.data
   } catch (error) {
-    console.error('Error fetching men perfumes:', error)
+    console.error('Error fetching men perfume:', error)
   }
 }
 

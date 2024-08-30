@@ -117,7 +117,7 @@ import { ref } from 'vue'
 import { crud, UploadImg, DeleteImg } from '../../services/index.mjs'
 import axios from 'axios'
 
-const menPrice = ref('')
+const menPrice = ref(`₦`)
 const womenPrice = ref('')
 const latestPrice = ref('')
 
@@ -169,6 +169,12 @@ const submitForm = async (type) => {
   } catch (error) {
     console.error(`Error uploading ${type} perfume:`, error)
     alert(`Failed to upload ${type} perfume. Please try again.`)
+  }
+  // console.log(formData)
+  // Log formData keys to verify data appended
+  for (let pair of formData.entries()) {
+    console.log(`${pair[0]}: ${pair[1]}`)
+    // console.log(`${pair[1].size}`)
   }
 }
 </script>
