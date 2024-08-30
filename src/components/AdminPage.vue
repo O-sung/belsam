@@ -114,6 +114,7 @@
 
 <script setup>
 import { ref } from 'vue'
+import { crud, UploadImg, DeleteImg } from '../../services/index.mjs'
 import axios from 'axios'
 
 const menPrice = ref('')
@@ -137,6 +138,7 @@ const submitForm = async (type) => {
   if (type === 'men') {
     formData.append('price', menPrice.value)
     formData.append('image', menImageFile)
+    // const res = await UploadImg()
   } else if (type === 'women') {
     formData.append('price', womenPrice.value)
     formData.append('image', womenImageFile)
@@ -146,22 +148,24 @@ const submitForm = async (type) => {
   }
 
   try {
+    // const res = await UploadImg()
+    console.log(formData)
     await axios.post(`/api/perfumes/${type}`, formData, {
       headers: {
         'Content-Type': 'multipart/form-data'
       }
     })
     alert(`${type.charAt(0).toUpperCase() + type.slice(1)} Perfume uploaded successfully!`)
-    if (type === 'men') {
-      menPrice.value = ''
-      menImageFile = null
-    } else if (type === 'women') {
-      womenPrice.value = ''
-      womenImageFile = null
-    } else if (type === 'latest') {
-      latestPrice.value = ''
-      latestImageFile = null
-    }
+    // if (type === 'men') {
+    //   menPrice.value = ''
+    //   menImageFile = null
+    // } else if (type === 'women') {
+    //   womenPrice.value = ''
+    //   womenImageFile = null
+    // } else if (type === 'latest') {
+    //   latestPrice.value = ''
+    //   latestImageFile = null
+    // }
   } catch (error) {
     console.error(`Error uploading ${type} perfume:`, error)
     alert(`Failed to upload ${type} perfume. Please try again.`)
