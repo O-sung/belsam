@@ -114,6 +114,7 @@
 
 <script setup>
 import { ref } from 'vue'
+import { crud, UploadImg, DeleteImg } from '../../services/index.mjs'
 import axios from 'axios'
 
 const menPrice = ref(`₦`)
@@ -132,46 +133,51 @@ const handleImageUpload = (type, event) => {
 }
 
 const submitForm = async (type) => {
-  const formData = new FormData()
+  let formData = {}
 
   if (type === 'men') {
-    formData.append('price', menPrice.value)
-    formData.append('image', menImageFile)
+    const res = await UploadImg(menImageFile)
+    if (res) {
+      console.log(res)
+      formData.menImageFile = res.url
+      formData = { price: menPrice.value, image: res.url, type: type }
+    }
   } else if (type === 'women') {
-    formData.append('price', womenPrice.value)
-    formData.append('image', womenImageFile)
+    const res = await UploadImg(womenImageFile)
+    if (res) {
+      console.log(res)
+      formData.womenImageFile = res.url
+      formData = { price: womenPrice.value, image: res.url, type: type }
+    }
   } else if (type === 'latest') {
-    formData.append('price', latestPrice.value)
-    formData.append('image', latestImageFile)
+    const res = await UploadImg(latestImageFile)
+    if (res) {
+      console.log(res)
+      formData.latestImageFile = res.url
+      formData = { price: latestPrice.value, image: res.url, type: type }
+    }
   }
 
   try {
-    await axios.post(`/api/perfumes/${type}`, formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data'
-      }
-    })
+    // const res = await UploadImg()
+    console.log(formData)
+    const resp = await crud.addDocWithoutId('products', formData)
     alert(`${type.charAt(0).toUpperCase() + type.slice(1)} Perfume uploaded successfully!`)
-    if (type === 'men') {
-      menPrice.value = ''
-      menImageFile = null
-    } else if (type === 'women') {
-      womenPrice.value = ''
-      womenImageFile = null
-    } else if (type === 'latest') {
-      latestPrice.value = ''
-      latestImageFile = null
-    }
+    // if (type === 'men') {
+    //   menPrice.value = ''
+    //   menImageFile = null
+    // } else if (type === 'women') {
+    //   womenPrice.value = ''
+    //   womenImageFile = null
+    // } else if (type === 'latest') {
+    //   latestPrice.value = ''
+    //   latestImageFile = null
+    // }
   } catch (error) {
     console.error(`Error uploading ${type} perfume:`, error)
     alert(`Failed to upload ${type} perfume. Please try again.`)
   }
   // console.log(formData)
-  // Log formData keys to verify data appended
-  for (let pair of formData.entries()) {
-    console.log(`${pair[0]}: ${pair[1]}`)
-    // console.log(`${pair[1].size}`)
-  }
 }
 </script>
 
