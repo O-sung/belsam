@@ -31,7 +31,7 @@
 
         <button
           type="submit"
-          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          class="bg-[#e0b7b7] hover:bg-[#e78282] text-white font-bold py-2 px-4 rounded transition-all duration-300 focus:outline-none focus:shadow-outline"
         >
           Upload Men Perfume
         </button>
@@ -67,7 +67,7 @@
 
         <button
           type="submit"
-          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          class="bg-[#e0b7b7] hover:bg-[#e78282] text-white font-bold py-2 px-4 rounded transition-all duration-300 focus:outline-none focus:shadow-outline"
         >
           Upload Women Perfume
         </button>
@@ -103,7 +103,7 @@
 
         <button
           type="submit"
-          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          class="bg-[#e0b7b7] hover:bg-[#e78282] text-white font-bold py-2 px-4 rounded transition-all duration-300 focus:outline-none focus:shadow-outline"
         >
           Upload Latest Arrival Perfume
         </button>
