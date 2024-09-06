@@ -73,6 +73,8 @@
             />
           </div>
 
+          <p class="mt-4">LATEST ARRIVAL</p>
+
           <div class="flex items-center justify-between mt-3">
             <div>
               <p class="text-base">{{ item.pefName }}</p>

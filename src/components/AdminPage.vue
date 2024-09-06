@@ -1,113 +1,119 @@
 <template>
   <div class="pt-16 lg:pt-20 xl:pt-24 px-8">
-    <h1 class="text-2xl font-bold mb-4">Admin - Upload New Perfume</h1>
+    <h1 class="text-2xl font-bold mb-4 lg:mb-12">Admin - Upload New Perfume</h1>
 
-    <div class="shadow-lg p-8 mb-8">
-      <h2 class="text-xl font-semibold mb-4">Men Perfume</h2>
-      <form @submit.prevent="submitForm('men')">
-        <div class="mb-4">
-          <label class="block text-gray-700 text-sm font-bold mb-2" for="menPrice">Price:</label>
-          <input
-            v-model="menPrice"
-            type="text"
-            id="menPrice"
-            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            required
-          />
-        </div>
+    <div class="px-8 mb-4 grid grid-cols-1 gap-10 sm:grid-cols-2 md:grid-cols-3">
+      <div class="shadow-lg p-8 mb-8">
+        <h2 class="text-xl font-semibold mb-4">Men Perfume</h2>
+        <form @submit.prevent="submitForm('men')">
+          <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="menPrice">Price:</label>
+            <input
+              v-model="menPrice"
+              type="text"
+              id="menPrice"
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              required
+            />
+          </div>
 
-        <div class="mb-4">
-          <label class="block text-gray-700 text-sm font-bold mb-2" for="menImage"
-            >Perfume Image:</label
+          <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="menImage"
+              >Perfume Image:</label
+            >
+            <input
+              @change="handleImageUpload('men', $event)"
+              type="file"
+              id="menImage"
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              required
+            />
+          </div>
+
+          <button
+            type="submit"
+            class="bg-[#e0b7b7] hover:bg-[#e78282] text-white font-bold py-2 px-4 rounded transition-all duration-300 focus:outline-none focus:shadow-outline"
           >
-          <input
-            @change="handleImageUpload('men', $event)"
-            type="file"
-            id="menImage"
-            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            required
-          />
-        </div>
+            Upload Men Perfume
+          </button>
+        </form>
+      </div>
 
-        <button
-          type="submit"
-          class="bg-[#e0b7b7] hover:bg-[#e78282] text-white font-bold py-2 px-4 rounded transition-all duration-300 focus:outline-none focus:shadow-outline"
-        >
-          Upload Men Perfume
-        </button>
-      </form>
-    </div>
+      <div class="shadow-lg p-8 mb-8">
+        <h2 class="text-xl font-semibold mb-4">Women Perfume</h2>
+        <form @submit.prevent="submitForm('women')">
+          <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="womenPrice"
+              >Price:</label
+            >
+            <input
+              v-model="womenPrice"
+              type="text"
+              id="womenPrice"
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              required
+            />
+          </div>
 
-    <div class="shadow-lg p-8 mb-8">
-      <h2 class="text-xl font-semibold mb-4">Women Perfume</h2>
-      <form @submit.prevent="submitForm('women')">
-        <div class="mb-4">
-          <label class="block text-gray-700 text-sm font-bold mb-2" for="womenPrice">Price:</label>
-          <input
-            v-model="womenPrice"
-            type="text"
-            id="womenPrice"
-            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            required
-          />
-        </div>
+          <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="womenImage"
+              >Perfume Image:</label
+            >
+            <input
+              @change="handleImageUpload('women', $event)"
+              type="file"
+              id="womenImage"
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              required
+            />
+          </div>
 
-        <div class="mb-4">
-          <label class="block text-gray-700 text-sm font-bold mb-2" for="womenImage"
-            >Perfume Image:</label
+          <button
+            type="submit"
+            class="bg-[#e0b7b7] hover:bg-[#e78282] text-white font-bold py-2 px-4 rounded transition-all duration-300 focus:outline-none focus:shadow-outline"
           >
-          <input
-            @change="handleImageUpload('women', $event)"
-            type="file"
-            id="womenImage"
-            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            required
-          />
-        </div>
+            Upload Women Perfume
+          </button>
+        </form>
+      </div>
 
-        <button
-          type="submit"
-          class="bg-[#e0b7b7] hover:bg-[#e78282] text-white font-bold py-2 px-4 rounded transition-all duration-300 focus:outline-none focus:shadow-outline"
-        >
-          Upload Women Perfume
-        </button>
-      </form>
-    </div>
+      <div class="shadow-lg p-8 mb-8">
+        <h2 class="text-xl font-semibold mb-4">Latest Arrival Perfume</h2>
+        <form @submit.prevent="submitForm('latest')">
+          <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="latestPrice"
+              >Price:</label
+            >
+            <input
+              v-model="latestPrice"
+              type="text"
+              id="latestPrice"
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              required
+            />
+          </div>
 
-    <div class="shadow-lg p-8 mb-8">
-      <h2 class="text-xl font-semibold mb-4">Latest Arrival Perfume</h2>
-      <form @submit.prevent="submitForm('latest')">
-        <div class="mb-4">
-          <label class="block text-gray-700 text-sm font-bold mb-2" for="latestPrice">Price:</label>
-          <input
-            v-model="latestPrice"
-            type="text"
-            id="latestPrice"
-            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            required
-          />
-        </div>
+          <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="latestImage"
+              >Perfume Image:</label
+            >
+            <input
+              @change="handleImageUpload('latest', $event)"
+              type="file"
+              id="latestImage"
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              required
+            />
+          </div>
 
-        <div class="mb-4">
-          <label class="block text-gray-700 text-sm font-bold mb-2" for="latestImage"
-            >Perfume Image:</label
+          <button
+            type="submit"
+            class="bg-[#e0b7b7] hover:bg-[#e78282] text-white font-bold py-2 px-4 rounded transition-all duration-300 focus:outline-none focus:shadow-outline"
           >
-          <input
-            @change="handleImageUpload('latest', $event)"
-            type="file"
-            id="latestImage"
-            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            required
-          />
-        </div>
-
-        <button
-          type="submit"
-          class="bg-[#e0b7b7] hover:bg-[#e78282] text-white font-bold py-2 px-4 rounded transition-all duration-300 focus:outline-none focus:shadow-outline"
-        >
-          Upload Latest Arrival Perfume
-        </button>
-      </form>
+            Upload Latest Arrival
+          </button>
+        </form>
+      </div>
     </div>
   </div>
 </template>
