@@ -114,12 +114,12 @@
 
 <script setup>
 import { ref } from 'vue'
-import { crud, UploadImg, DeleteImg } from '../../services/index.mjs'
-import axios from 'axios'
+import { crud, UploadImg } from '../../services/index.mjs'
+// import axios from 'axios'
 
 const menPrice = ref(`₦`)
-const womenPrice = ref('')
-const latestPrice = ref('')
+const womenPrice = ref('₦')
+const latestPrice = ref('₦')
 
 let menImageFile = null
 let womenImageFile = null
@@ -162,6 +162,7 @@ const submitForm = async (type) => {
     // const res = await UploadImg()
     console.log(formData)
     const resp = await crud.addDocWithoutId('products', formData)
+    console.log(resp)
     alert(`${type.charAt(0).toUpperCase() + type.slice(1)} Perfume uploaded successfully!`)
     // if (type === 'men') {
     //   menPrice.value = ''
@@ -173,6 +174,21 @@ const submitForm = async (type) => {
     //   latestPrice.value = ''
     //   latestImageFile = null
     // }
+
+    // Clear the input fields after successful upload
+    if (type === 'men') {
+      menPrice.value = '₦'
+      menImageFile = null
+    } else if (type === 'women') {
+      womenPrice.value = ''
+      womenImageFile = null
+    } else if (type === 'latest') {
+      latestPrice.value = ''
+      latestImageFile = null
+    }
+
+    // Reset the file input field
+    document.getElementById(`${type}Image`).value = ''
   } catch (error) {
     console.error(`Error uploading ${type} perfume:`, error)
     alert(`Failed to upload ${type} perfume. Please try again.`)

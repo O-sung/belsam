@@ -119,4 +119,4 @@ let DeleteImg = async (path) => {
 let crud = new CRUD()
 let authfunc = new AuthFunc()
 
-export { auth, authfunc, crud, UploadImg, DeleteImg, serverTimestamp, onAuthStateChanged }
+export { auth, authfunc, crud, storage, UploadImg, DeleteImg, serverTimestamp, onAuthStateChanged }
