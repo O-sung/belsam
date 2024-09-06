@@ -10,11 +10,11 @@
           <img
             :src="item.image"
             alt="Men Perfume"
-            class="h-64 w-full object-cover md:h-64 xl:h-80"
+            class="h-64 w-full object-top object-cover md:h-64 xl:h-80"
           />
         </div>
 
-        <p class="mt-4">WOMEN PERFUME</p>
+        <p class="mt-4">LATEST ARRIVAL</p>
 
         <div class="flex justify-between items-center mt-1 mb-3">
           <p>{{ item.price }}</p>
@@ -41,31 +41,31 @@ import { RouterLink } from 'vue-router'
 import { ref, computed, onMounted } from 'vue'
 import { crud } from '../../services/index.mjs'
 
-const womenPerfume = ref([])
+const latestPerfume = ref([])
 
-const fetchWomenPerfume = async () => {
+const fetchLatestPerfume = async () => {
   try {
     const response = await crud.getAllDoc('products')
 
-    const womenPerfumeData = response.filter((item) => item.type === 'women')
+    const latestPerfumeData = response.filter((item) => item.type === 'latest')
 
-    womenPerfume.value = womenPerfumeData
+    latestPerfume.value = latestPerfumeData
   } catch (error) {
-    console.error('Error fetching Women Perfumes:', error)
+    console.error('Error fetching Latest Arrivals:', error)
   }
 }
 
-onMounted(fetchWomenPerfume)
+onMounted(fetchLatestPerfume)
 
 const currentPage = ref(1)
 const itemsPerPage = 12
 
-const totalPages = computed(() => Math.ceil(womenPerfume.value.length / itemsPerPage))
+const totalPages = computed(() => Math.ceil(latestPerfume.value.length / itemsPerPage))
 
 const paginatedPerfume = computed(() => {
   const start = (currentPage.value - 1) * itemsPerPage
   const end = start + itemsPerPage
-  return womenPerfume.value.slice(start, end)
+  return latestPerfume.value.slice(start, end)
 })
 </script>
 
