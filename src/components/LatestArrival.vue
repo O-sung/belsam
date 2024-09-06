@@ -9,7 +9,7 @@
         <div>
           <img
             :src="item.image"
-            alt="Men Perfume"
+            alt="Women Perfume"
             class="h-64 w-full object-top object-cover md:h-64 xl:h-80"
           />
         </div>

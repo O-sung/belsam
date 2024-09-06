@@ -12,7 +12,8 @@ import { RouterLink, RouterView } from 'vue-router'
 
         <div class="flex gap-10">
           <RouterLink to="/" class="text-base">Home</RouterLink>
-          <RouterLink to="/about" class="text-base">Perfume</RouterLink>
+          <RouterLink to="/men" class="text-base">Men</RouterLink>
+          <RouterLink to="/women" class="text-base">Women</RouterLink>
           <RouterLink to="/about" class="text-base">About Us</RouterLink>
           <RouterLink to="/about" class="text-base">Contact Us</RouterLink>
           <RouterLink to="/about" class="text-base">Blog</RouterLink>
@@ -43,7 +44,8 @@ import { RouterLink, RouterView } from 'vue-router'
           :class="isHamOpened ? 'top-0' : 'top-[-1000%]'"
         >
           <RouterLink to="/" @click="closeHam()">Home</RouterLink>
-          <RouterLink to="/about" @click="closeHam()">Perfume</RouterLink>
+          <RouterLink to="/men" @click="closeHam()">Men</RouterLink>
+          <RouterLink to="/women" @click="closeHam()">Women</RouterLink>
           <RouterLink to="/about" @click="closeHam()">About Us</RouterLink>
           <RouterLink to="/about" @click="closeHam()">Contact Us</RouterLink>
           <RouterLink to="/about" @click="closeHam()">Blog</RouterLink>
