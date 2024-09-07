@@ -56,6 +56,22 @@ const router = createRouter({
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import('../views/AdminMen.vue')
+    },
+    {
+      path: '/admin-women',
+      name: 'adminWomen',
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import('../views/AdminWomen.vue')
+    },
+    {
+      path: '/admin-latest',
+      name: 'adminLatest',
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import('../views/AdminLatest.vue')
     }
   ]
 })

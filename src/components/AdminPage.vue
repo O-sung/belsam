@@ -5,9 +5,11 @@
     <div class="px- mb-4 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
       <div class="shadow-lg p-4 mb-8">
         <h2 class="text-xl font-semibold mb-4">Men Perfume</h2>
+
         <form @submit.prevent="submitForm('men')">
           <div class="mb-4">
             <label class="block text-gray-700 text-sm font-bold mb-2" for="menPrice">Price:</label>
+
             <input
               v-model="menPrice"
               type="text"
@@ -21,6 +23,7 @@
             <label class="block text-gray-700 text-sm font-bold mb-2" for="menImage"
               >Perfume Image:</label
             >
+
             <input
               @change="handleImageUpload('men', $event)"
               type="file"
