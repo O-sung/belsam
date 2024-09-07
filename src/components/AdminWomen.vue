@@ -1,5 +1,5 @@
 <template>
-  <div class="p-8">
+  <div class="pt-16 px-8">
     <h1 class="text-2xl mb-6">Admin Page - Manage Women Perfumes</h1>
 
     <div
