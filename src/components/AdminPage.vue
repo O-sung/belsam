@@ -2,8 +2,8 @@
   <div class="pt-16 lg:pt-20 xl:pt-24 px-8">
     <h1 class="text-2xl font-bold mb-4 lg:mb-12">Admin - Upload New Perfume</h1>
 
-    <div class="px-8 mb-4 grid grid-cols-1 gap-10 sm:grid-cols-2 md:grid-cols-3">
-      <div class="shadow-lg p-8 mb-8">
+    <div class="px- mb-4 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
+      <div class="shadow-lg p-4 mb-8">
         <h2 class="text-xl font-semibold mb-4">Men Perfume</h2>
         <form @submit.prevent="submitForm('men')">
           <div class="mb-4">
@@ -170,16 +170,6 @@ const submitForm = async (type) => {
     const resp = await crud.addDocWithoutId('products', formData)
     console.log(resp)
     alert(`${type.charAt(0).toUpperCase() + type.slice(1)} Perfume uploaded successfully!`)
-    // if (type === 'men') {
-    //   menPrice.value = ''
-    //   menImageFile = null
-    // } else if (type === 'women') {
-    //   womenPrice.value = ''
-    //   womenImageFile = null
-    // } else if (type === 'latest') {
-    //   latestPrice.value = ''
-    //   latestImageFile = null
-    // }
 
     // Clear the input fields after successful upload
     if (type === 'men') {
