@@ -16,7 +16,7 @@ import { RouterLink, RouterView } from 'vue-router'
           <RouterLink to="/women" class="text-base">Women</RouterLink>
           <RouterLink to="/about" class="text-base">About Us</RouterLink>
           <RouterLink to="/about" class="text-base">Contact Us</RouterLink>
-          <RouterLink to="/about" class="text-base">Blog</RouterLink>
+          <RouterLink to="/admin" class="text-base">Admin</RouterLink>
         </div>
 
         <div>
