@@ -48,7 +48,7 @@ import { RouterLink, RouterView } from 'vue-router'
           <RouterLink to="/women" @click="closeHam()">Women</RouterLink>
           <RouterLink to="/about" @click="closeHam()">About Us</RouterLink>
           <RouterLink to="/about" @click="closeHam()">Contact Us</RouterLink>
-          <RouterLink to="/about" @click="closeHam()">Blog</RouterLink>
+          <RouterLink to="/admin" class="text-base">Admin</RouterLink>
         </div>
 
         <div @click="openHam()" class="z-50">
