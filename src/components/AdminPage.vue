@@ -20,6 +20,20 @@
           </div>
 
           <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="menName"
+              >Perfume Name:</label
+            >
+
+            <input
+              v-model="menName"
+              type="text"
+              id="menName"
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              required
+            />
+          </div>
+
+          <div class="mb-4">
             <label class="block text-gray-700 text-sm font-bold mb-2" for="menImage"
               >Perfume Image:</label
             >
@@ -53,6 +67,20 @@
               v-model="womenPrice"
               type="text"
               id="womenPrice"
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              required
+            />
+          </div>
+
+          <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="womenName"
+              >Perfume Name:</label
+            >
+
+            <input
+              v-model="womenName"
+              type="text"
+              id="womenName"
               class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               required
             />
@@ -97,6 +125,20 @@
           </div>
 
           <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="latestName"
+              >Perfume Name:</label
+            >
+
+            <input
+              v-model="latestName"
+              type="text"
+              id="latestName"
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              required
+            />
+          </div>
+
+          <div class="mb-4">
             <label class="block text-gray-700 text-sm font-bold mb-2" for="latestImage"
               >Perfume Image:</label
             >
@@ -127,8 +169,11 @@ import { crud, UploadImg } from '../../services/index.mjs'
 // import axios from 'axios'
 
 const menPrice = ref(`₦`)
+const menName = ref('')
 const womenPrice = ref('₦')
+const womenName = ref('')
 const latestPrice = ref('₦')
+const latestName = ref('')
 
 let menImageFile = null
 let womenImageFile = null
@@ -149,21 +194,26 @@ const submitForm = async (type) => {
     if (res) {
       console.log(res)
       formData.menImageFile = res.url
-      formData = { price: menPrice.value, image: res.url, type: type }
+      formData = { price: menPrice.value, menName: menName.value, image: res.url, type: type }
     }
   } else if (type === 'women') {
     const res = await UploadImg(womenImageFile)
     if (res) {
       console.log(res)
       formData.womenImageFile = res.url
-      formData = { price: womenPrice.value, image: res.url, type: type }
+      formData = { price: womenPrice.value, womenName: womenName.value, image: res.url, type: type }
     }
   } else if (type === 'latest') {
     const res = await UploadImg(latestImageFile)
     if (res) {
       console.log(res)
       formData.latestImageFile = res.url
-      formData = { price: latestPrice.value, image: res.url, type: type }
+      formData = {
+        price: latestPrice.value,
+        latestName: latestName.value,
+        image: res.url,
+        type: type
+      }
     }
   }
 

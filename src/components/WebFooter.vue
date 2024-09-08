@@ -16,10 +16,11 @@
           <li>About Us</li>
         </ul>
       </div>
+      <hr />
     </div>
 
-    <div>
-      <p>Copyright &copy; {{ currentYear }}</p>
+    <div class="text-center">
+      <p>Copyright &copy; {{ currentYear }}. Powered by Belsam</p>
     </div>
   </div>
 </template>

@@ -14,7 +14,7 @@
           />
         </div>
 
-        <p class="mt-4">WOMEN PERFUME</p>
+        <p class="mt-4 font-bold">{{ item.womenName }}</p>
 
         <div class="flex justify-between items-center mt-1 mb-3">
           <p>{{ item.price }}</p>

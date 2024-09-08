@@ -14,7 +14,7 @@
           />
         </div>
 
-        <p class="mt-4">LATEST ARRIVAL</p>
+        <p class="mt-4 font-bold">{{ item.latestName }}</p>
 
         <div class="flex justify-between items-center mt-1 mb-3">
           <p>{{ item.price }}</p>

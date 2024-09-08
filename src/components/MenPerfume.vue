@@ -11,7 +11,7 @@
           <img :src="item.image" alt="Perfume" class="h-64 w-full object-cover md:h-64 xl:h-80" />
         </div>
 
-        <p class="mt-4">MEN PERFUME</p>
+        <p class="mt-4 font-bold">{{ item.menName }}</p>
 
         <div class="flex justify-between items-center mt-1 mb-3">
           <p>{{ item.price }}</p>

@@ -41,7 +41,7 @@
 
     <div>
       <div class="promise h-96 flex items-center lg:mb-8">
-        <div class="w-4/5 mx-auto lg:w-[90%]">
+        <div class="w-4/5 mx-auto lg:w-[40%] lg:ml-24">
           <h2 class="font-bold text-lg lg:text-3xl lg:mb-4">Our Promise:</h2>
 
           <p class="lg:text-xl lg:font-semibold">
@@ -110,7 +110,7 @@
     <!-- Body Spray Collection -->
     <div class="collection relative mt-10 h-96 pt-16 px-6 md:pt-8">
       <div>
-        <h2 class="font-bold text-4xl">Body Spray Collection</h2>
+        <h2 class="font-bold text-4xl text-white">Body Spray Collection</h2>
       </div>
 
       <div class="absolute bottom-4 right-6 flex gap-4">
