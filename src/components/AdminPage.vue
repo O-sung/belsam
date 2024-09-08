@@ -6,7 +6,7 @@
       <RouterLink to="/" class="text-base">Home</RouterLink>
       <RouterLink to="/admin-men" class="text-base">Men</RouterLink>
       <RouterLink to="/admin-women" class="text-base">Women</RouterLink>
-      <RouterLink to="/admin-latest" class="text-base">About Us</RouterLink>
+      <RouterLink to="/admin-latest" class="text-base">Latest</RouterLink>
     </div>
 
     <div class="px- mb-4 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
