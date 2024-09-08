@@ -22,7 +22,7 @@
           />
         </div>
 
-        <p class="mt-4 font-bold">{{ item.pefName }}</p>
+        <p class="mt-4 font-bold">{{ item.menName }}</p>
 
         <p class="mt-4">{{ item.price }}</p>
 
