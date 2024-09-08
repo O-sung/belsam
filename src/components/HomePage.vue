@@ -103,7 +103,7 @@
       </div>
 
       <div class="mt-4">
-        <RouterLink to="/">SEE MORE &rarr;</RouterLink>
+        <RouterLink to="/latest">SEE MORE &rarr;</RouterLink>
       </div>
     </div>
 
@@ -121,7 +121,7 @@
         >
         <RouterLink
           to="/women"
-          class="bg-[#e0b7b7] text-white py-1 px-4 rounded md:text-lg md:py-2 md:px-5"
+          class="bg-[#f05d5d] text-white py-1 px-4 rounded md:text-lg md:py-2 md:px-5"
           >WOMEN</RouterLink
         >
       </div>

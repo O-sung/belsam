@@ -4,13 +4,13 @@ import { RouterLink, RouterView } from 'vue-router'
 
 <template>
   <header class="fixed w-full z-30">
-    <div class="bg-[#e0b7b7] bg-opacity-100 py-2 px-3 xl:py-4">
+    <div class="bg-[#f05d5d] bg-opacity-100 py-2 px-3 xl:py-3">
       <nav class="hidden lg:flex justify-between items-center">
         <div>
-          <img src="/public/logo.jpg" class="w-10 h-10" />
+          <img src="/public/logo.jpg" class="w-12 h-12" />
         </div>
 
-        <div class="flex gap-10">
+        <div class="flex justify-center gap-8 text-white">
           <RouterLink to="/" class="text-base">Home</RouterLink>
           <RouterLink to="/men" class="text-base">Men</RouterLink>
           <RouterLink to="/women" class="text-base">Women</RouterLink>
@@ -40,7 +40,7 @@ import { RouterLink, RouterView } from 'vue-router'
         </div>
 
         <div
-          class="text-base w-full absolute flex flex-col items-center gap-8 bg-[#e0b7b7] top-0 left-0 pt-20 pb-32 ease-in duration-300"
+          class="text-base w-full absolute flex flex-col items-center gap-8 bg-[#f05d5d] text-white top-0 left-0 pt-20 pb-32 ease-in duration-300"
           :class="isHamOpened ? 'top-0' : 'top-[-1000%]'"
         >
           <RouterLink to="/" @click="closeHam()">Home</RouterLink>
@@ -91,10 +91,11 @@ nav {
 }
 
 nav a.router-link-exact-active {
-  color: #000;
-  background-color: #aace48;
+  text-align: center;
+  color: #aace48;
+  padding-bottom: 2px;
+  border-bottom: 3px solid #aace48;
   height: 100%;
-  padding: 0 10px;
 }
 
 nav a.router-link-exact-active:hover {
@@ -103,9 +104,5 @@ nav a.router-link-exact-active:hover {
 
 nav a {
   text-decoration: none;
-}
-
-nav a:first-of-type {
-  border: 0;
 }
 </style>

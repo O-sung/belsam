@@ -1,5 +1,5 @@
 <template>
-  <div class="pt-16 px-8">
+  <div class="pt-16 px-8 pb-8">
     <h1 class="text-2xl mb-6">Admin Page - Manage Latest Perfumes</h1>
 
     <div
@@ -11,7 +11,7 @@
           <img
             :src="item.image"
             alt="Latest Perfume"
-            class="h-64 w-full object-cover md:h-64 xl:h-80"
+            class="h-64 w-full object-cover object-top md:h-64 xl:h-80"
           />
         </div>
 

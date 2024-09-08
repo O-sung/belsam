@@ -1,6 +1,6 @@
 <template>
   <div class="pt-16 lg:pt-20 xl:pt-24">
-    <div class="ml-4 mb-8 px-4 py-1 bg-[#e0b7b7] inline-block lg:hidden">
+    <div class="ml-4 mb-8 px-4 py-1 bg-[#f05d5d] text-white inline-block lg:hidden">
       <RouterLink to="/">HOME</RouterLink>
     </div>
 
@@ -15,7 +15,10 @@
 
         <div class="flex justify-between items-center mt-1 mb-3">
           <p>{{ item.price }}</p>
-          <button>More Info</button>
+
+          <button class="bg-[#f05d5d] px-3 py-1 rounded-lg text-white hover:bg-[#627727]">
+            Add to Cart
+          </button>
         </div>
       </div>
     </div>
@@ -27,7 +30,7 @@
       v-for="page in totalPages"
       :key="page"
       @click="currentPage = page"
-      :class="['mx-2 px-4 py-2 border', { 'bg-[#e0b7b7] text-white': currentPage === page }]"
+      :class="['mx-2 px-4 py-2 border', { 'bg-[#f05d5d] text-white': currentPage === page }]"
     >
       {{ page }}
     </button>
