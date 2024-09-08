@@ -1,6 +1,13 @@
 <template>
-  <div class="pt-16 lg:pt-20 xl:pt-24 px-8">
+  <div class="pt-16 px-8 lg:pt-24">
     <h1 class="text-2xl font-bold mb-4 lg:mb-12">Admin - Upload New Perfume</h1>
+
+    <div class="flex justify-center gap-8 text-[#f05d5d]">
+      <RouterLink to="/" class="text-base">Home</RouterLink>
+      <RouterLink to="/admin-men" class="text-base">Men</RouterLink>
+      <RouterLink to="/admin-women" class="text-base">Women</RouterLink>
+      <RouterLink to="/admin-latest" class="text-base">About Us</RouterLink>
+    </div>
 
     <div class="px- mb-4 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
       <div class="shadow-lg p-4 mb-8">

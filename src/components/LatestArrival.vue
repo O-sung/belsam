@@ -1,6 +1,6 @@
 <template>
   <div class="pt-16 lg:pt-20 xl:pt-24">
-    <div class="ml-4 mb-8 px-4 py-1 bg-[#f05d5d] inline-block lg:hidden">
+    <div class="ml-4 mb-8 px-4 py-1 bg-[#f05d5d] text-white inline-block lg:hidden">
       <RouterLink to="/">HOME</RouterLink>
     </div>
 

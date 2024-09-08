@@ -2,6 +2,13 @@
   <div class="pt-16 px-8 pb-8">
     <h1 class="text-2xl mb-6">Admin Page - Manage Men Perfumes</h1>
 
+    <div class="flex justify-center gap-8 text-[#f05d5d]">
+      <RouterLink to="/" class="text-base">Home</RouterLink>
+      <RouterLink to="/admin-men" class="text-base">Men</RouterLink>
+      <RouterLink to="/admin-women" class="text-base">Women</RouterLink>
+      <RouterLink to="/admin-latest" class="text-base">About Us</RouterLink>
+    </div>
+
     <div
       v-if="filteredMenPerfumes.length"
       class="grid grid-cols-1 gap-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"

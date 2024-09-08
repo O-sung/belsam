@@ -54,7 +54,7 @@ import { RouterLink, RouterView } from 'vue-router'
         <div @click="openHam()" class="z-50">
           <font-awesome-icon
             :icon="isHamOpened ? 'fa-xmark' : 'fa-bars'"
-            :class="isHamOpened ? 'text-white' : 'text-red-600'"
+            :class="isHamOpened ? 'text-white' : 'text-white'"
             class="fa-xl"
           />
         </div>
