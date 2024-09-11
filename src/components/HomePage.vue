@@ -41,7 +41,7 @@
 
     <div>
       <div class="promise h-96 flex items-center lg:mb-8">
-        <div class="w-4/5 mx-auto lg:w-[90%]">
+        <div class="w-4/5 mx-auto lg:w-[40%] lg:ml-24">
           <h2 class="font-bold text-lg lg:text-3xl lg:mb-4">Our Promise:</h2>
 
           <p class="lg:text-xl lg:font-semibold">
@@ -73,6 +73,8 @@
             />
           </div>
 
+          <p class="mt-4">LATEST ARRIVAL</p>
+
           <div class="flex items-center justify-between mt-3">
             <div>
               <p class="text-base">{{ item.pefName }}</p>
@@ -101,14 +103,14 @@
       </div>
 
       <div class="mt-4">
-        <RouterLink to="/">SEE MORE &rarr;</RouterLink>
+        <RouterLink to="/latest">SEE MORE &rarr;</RouterLink>
       </div>
     </div>
 
     <!-- Body Spray Collection -->
     <div class="collection relative mt-10 h-96 pt-16 px-6 md:pt-8">
       <div>
-        <h2 class="font-bold text-4xl">Body Spray Collection</h2>
+        <h2 class="font-bold text-4xl text-white">Body Spray Collection</h2>
       </div>
 
       <div class="absolute bottom-4 right-6 flex gap-4">
@@ -119,7 +121,7 @@
         >
         <RouterLink
           to="/women"
-          class="bg-[#e0b7b7] text-white py-1 px-4 rounded md:text-lg md:py-2 md:px-5"
+          class="bg-[#f05d5d] text-white py-1 px-4 rounded md:text-lg md:py-2 md:px-5"
           >WOMEN</RouterLink
         >
       </div>

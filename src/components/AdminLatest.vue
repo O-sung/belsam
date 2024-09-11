@@ -1,6 +1,6 @@
 <template>
   <div class="pt-16 px-8 pb-8">
-    <h1 class="text-2xl mb-6">Admin Page - Manage Men Perfumes</h1>
+    <h1 class="text-2xl mb-6">Admin Page - Manage Latest Perfumes</h1>
 
     <div class="flex justify-center gap-8 text-[#f05d5d]">
       <RouterLink to="/" class="text-base">Home</RouterLink>
@@ -10,19 +10,19 @@
     </div>
 
     <div
-      v-if="filteredMenPerfumes.length"
+      v-if="filteredLatestPerfumes.length"
       class="grid grid-cols-1 gap-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
     >
-      <div v-for="item in filteredMenPerfumes" :key="item.id" class="shadow-lg px-3 py-2">
+      <div v-for="item in filteredLatestPerfumes" :key="item.id" class="shadow-lg px-3 py-2">
         <div>
           <img
             :src="item.image"
-            alt="Men Perfume"
+            alt="Latest Perfume"
             class="h-64 w-full object-cover object-top md:h-64 xl:h-80"
           />
         </div>
 
-        <p class="mt-4 font-bold">{{ item.menName }}</p>
+        <p class="mt-4 font-bold">{{ item.latestName }}</p>
 
         <p class="mt-4">{{ item.price }}</p>
 
@@ -42,6 +42,7 @@
       v-if="editingPrice"
       class="fixed inset-0 flex justify-center items-center bg-gray-900 bg-opacity-75"
     >
+      <!-- Edit Price Modal -->
       <div class="bg-white p-6 rounded-lg">
         <h2 class="text-xl mb-4">Edit Price</h2>
 
@@ -65,30 +66,30 @@
 import { ref, onMounted, computed } from 'vue'
 import { crud } from '../../services/index.mjs'
 
-const menPerfumes = ref([])
+const latestPerfumes = ref([])
 const editingPrice = ref(false)
 const currentPerfumeId = ref(null)
 const newPrice = ref('')
 
-const fetchMenPerfumes = async () => {
+const fetchLatestPerfumes = async () => {
   try {
     const perfumes = await crud.getAllDoc('products')
-    menPerfumes.value = perfumes
+    latestPerfumes.value = perfumes
   } catch (error) {
     console.error('Error fetching men perfumes:', error)
   }
 }
 
-onMounted(fetchMenPerfumes)
+onMounted(fetchLatestPerfumes)
 
 // Computed property to filter only men's perfumes
 // const filteredMenPerfumes = computed(() => {
 //   return menPerfumes.value.filter((perfume) => perfume.type === 'men')
 // })
 
-const filteredMenPerfumes = computed(() => {
-  return menPerfumes.value
-    .filter((perfume) => perfume.type === 'men')
+const filteredLatestPerfumes = computed(() => {
+  return latestPerfumes.value
+    .filter((perfume) => perfume.type === 'latest')
     .sort((a, b) => {
       if (!a.createdAt || !b.createdAt) {
         return 0 // Or any other default sorting logic
@@ -100,7 +101,7 @@ const filteredMenPerfumes = computed(() => {
 const deleteImage = async (id) => {
   try {
     await crud.removeDoc('products', id)
-    await fetchMenPerfumes()
+    await fetchLatestPerfumes()
 
     alert('Perfume deleted successfully')
   } catch (error) {
@@ -109,7 +110,7 @@ const deleteImage = async (id) => {
 }
 
 const editPrice = (id) => {
-  const perfume = menPerfumes.value.find((item) => item.id === id)
+  const perfume = latestPerfumes.value.find((item) => item.id === id)
   if (perfume) {
     currentPerfumeId.value = id
     newPrice.value = perfume.price
@@ -120,7 +121,7 @@ const editPrice = (id) => {
 const updatePrice = async () => {
   try {
     await crud.updateDocument('products', currentPerfumeId.value, { price: `₦${newPrice.value}` })
-    await fetchMenPerfumes()
+    await fetchLatestPerfumes()
     alert('Price updated successfully')
     cancelEdit()
   } catch (error) {

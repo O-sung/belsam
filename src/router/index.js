@@ -15,7 +15,7 @@ const router = createRouter({
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import('../views/MenPerfume.vue')
+      component: () => import('../views/AboutPage.vue')
     },
     {
       path: '/men',
@@ -34,6 +34,22 @@ const router = createRouter({
       component: () => import('../views/WomenPerfume.vue')
     },
     {
+      path: '/latest',
+      name: 'Latest',
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import('../views/LatestPage.vue')
+    },
+    {
+      path: '/cart',
+      name: 'Cart',
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import('../components/PefCart.vue')
+    },
+    {
       path: '/admin',
       name: 'admin',
       // route level code-splitting
@@ -48,6 +64,22 @@ const router = createRouter({
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import('../views/AdminMen.vue')
+    },
+    {
+      path: '/admin-women',
+      name: 'adminWomen',
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import('../views/AdminWomen.vue')
+    },
+    {
+      path: '/admin-latest',
+      name: 'adminLatest',
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import('../views/AdminLatest.vue')
     }
   ]
 })

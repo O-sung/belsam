@@ -1,146 +1,126 @@
 <template>
   <div class="pt-16 lg:pt-20 xl:pt-24">
-    <div class="ml-4 mb-8 px-4 py-1 bg-[#e0b7b7] inline-block lg:hidden">
+    <div class="ml-4 mb-8 px-4 py-1 bg-[#f05d5d] text-white inline-block lg:hidden">
       <RouterLink to="/">HOME</RouterLink>
     </div>
 
-    <div
-      class="px-8 mb-4 grid grid-cols-1 gap-10 sm:grid-cols-2 md:grid-cols-3 lg:px-14 xl:grid-cols-4"
-    >
+    <!-- Loop through the men's perfumes -->
+    <div class="px-6 mb-4 grid grid-cols-1 gap-10 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
       <div v-for="item in paginatedPerfume" :key="item.id" class="shadow-lg px-3 py-2">
         <div>
-          <img :src="item.img" alt="Men Perfume" class="h-64 w-full object-cover md:h-64 xl:h-80" />
+          <img :src="item.image" alt="Perfume" class="h-64 w-full object-cover md:h-64 xl:h-80" />
         </div>
 
-        <p class="mt-4">MEN PERFUME</p>
+        <p class="mt-4 font-bold">{{ item.menName }}</p>
 
-        <div class="flex justify-between items-center mt-1 mb-3">
-          <p>{{ item.price }}</p>
-          <button>More Info</button>
+        <div class="flex flex-col items-center mt-1 mb-3">
+          <p class="mb-2">{{ item.price }}</p>
+
+          <!-- Quantity Selector -->
+          <div class="flex items-center mb-2">
+            <label for="quantity-{{ item.id }}" class="mr-2">Qty:</label>
+            <input
+              type="number"
+              id="quantity-{{ item.id }}"
+              v-model.number="item.quantity"
+              min="1"
+              class="w-16 px-2 py-1 border border-gray-300 rounded"
+            />
+          </div>
+
+          <button
+            class="bg-[#f05d5d] px-3 py-1 rounded-lg text-white hover:bg-[#627727]"
+            @click="addToCart(item)"
+          >
+            Add to Cart
+          </button>
         </div>
       </div>
-
-      <!-- <div v-for="item in paginatedPerfume" :key="item.id" class="shadow-lg px-3 py-2">
-        <div>
-          <img :src="item.imgUrl" alt="Men Perfume" class="h-64 w-full object-cover md:h-64 xl:h-80" />
-        </div>
-        <p class="mt-4">MEN PERFUME</p>
-        <div class="flex justify-between items-center mt-1 mb-3">
-          <p>{{ item.price }}</p>
-          <button>More Info</button>
-        </div>
-      </div> -->
     </div>
+  </div>
 
-    <div class="flex justify-center my-8">
-      <button
-        v-for="page in totalPages"
-        :key="page"
-        @click="currentPage = page"
-        :class="['mx-2 px-4 py-2 border', { 'bg-[#e0b7b7] text-white': currentPage === page }]"
-      >
-        {{ page }}
-      </button>
-    </div>
+  <!-- Pagination -->
+  <div class="flex justify-center my-8">
+    <button
+      v-for="page in totalPages"
+      :key="page"
+      @click="currentPage = page"
+      :class="[
+        'mx-2 px-4 py-2 border rounded-full',
+        { 'bg-[#f05d5d] text-white': currentPage === page }
+      ]"
+    >
+      {{ page }}
+    </button>
   </div>
 </template>
 
 <script setup>
-import { RouterLink } from 'vue-router'
-import { ref, computed } from 'vue'
-// import { ref, computed, onMounted } from 'vue'
-// import axios from 'axios'
+import { ref, computed, onMounted } from 'vue'
+import { crud } from '../../services/index.mjs'
 
-const perfume = [
-  {
-    id: 1,
-    price: '$112',
-    img: '/public/pef1.jpg'
-  },
-  {
-    id: 2,
-    price: '$112',
-    img: '/public/pef1.jpg'
-  },
-  {
-    id: 3,
-    price: '$112',
-    img: '/public/pef1.jpg'
-  },
-  {
-    id: 4,
-    price: '$112',
-    img: '/public/pef1.jpg'
-  },
-  {
-    id: 5,
-    price: '$112',
-    img: '/public/pef1.jpg'
-  },
-  {
-    id: 6,
-    price: '$112',
-    img: '/public/pef1.jpg'
-  },
-  {
-    id: 7,
-    price: '$112',
-    img: '/public/pef1.jpg'
-  },
-  {
-    id: 8,
-    price: '$112',
-    img: '/public/pef1.jpg'
-  },
-  {
-    id: 9,
-    price: '$112',
-    img: '/public/pef1.jpg'
-  },
-  {
-    id: 9,
-    price: '$112',
-    img: '/public/pef1.jpg'
-  },
-  {
-    id: 9,
-    price: '$112',
-    img: '/public/pef4.jpg'
-  },
-  {
-    id: 9,
-    price: '$112',
-    img: '/public/pef3.jpg'
-  },
-  {
-    id: 9,
-    price: '$112',
-    img: '/public/pef6.jpg'
+const menPerfumes = ref([])
+const cart = ref([])
+
+// Fetch men's perfumes from Firestore
+const fetchMenPerfumes = async () => {
+  try {
+    // Fetch perfume data from Firestore where type is 'men'
+    const response = await crud.getAllDoc('products') // Adjust 'products' to your Firestore collection name
+
+    // Filter out only the men's perfumes
+    const menPerfumeData = response.filter((item) => item.type === 'men')
+
+    // Initialize quantity for each item
+    menPerfumeData.forEach((item) => {
+      item.quantity = 1
+    })
+
+    menPerfumes.value = menPerfumeData
+  } catch (error) {
+    console.error('Error fetching men perfumes:', error)
   }
-]
+}
 
-// const perfumes = ref([])
-// const fetchPerfumes = async () => {
-//   try {
-//     const response = await axios.get('/api/perfumes')
-//     perfumes.value = response.data
-//   } catch (error) {
-//     console.error('Error fetching perfumes:', error)
-//   }
-// }
-
-// onMounted(fetchPerfumes)
+// Fetch men's perfumes when the component is mounted
+onMounted(fetchMenPerfumes)
 
 const currentPage = ref(1)
 const itemsPerPage = 12
 
-const totalPages = computed(() => Math.ceil(perfume.length / itemsPerPage))
+const totalPages = computed(() => Math.ceil(menPerfumes.value.length / itemsPerPage))
 
 const paginatedPerfume = computed(() => {
   const start = (currentPage.value - 1) * itemsPerPage
   const end = start + itemsPerPage
-  return perfume.slice(start, end)
+  return menPerfumes.value.slice(start, end)
 })
+
+// Add to Cart functionality
+const addToCart = (item) => {
+  // Create a cart item with quantity
+  const cartItem = {
+    id: item.id,
+    menName: item.menName,
+    image: item.image,
+    price: item.price,
+    quantity: item.quantity
+  }
+
+  // Add or update the item in the cart
+  const existingItemIndex = cart.value.findIndex((cartItem) => cartItem.id === item.id)
+  if (existingItemIndex !== -1) {
+    // Update quantity if item already in cart
+    cart.value[existingItemIndex].quantity += item.quantity
+  } else {
+    // Add new item to cart
+    cart.value.push(cartItem)
+  }
+
+  alert(`${item.menName} has been added to the cart.`)
+  // Optionally, save cart to localStorage
+  localStorage.setItem('cart', JSON.stringify(cart.value))
+}
 </script>
 
 <style lang="scss" scoped></style>
