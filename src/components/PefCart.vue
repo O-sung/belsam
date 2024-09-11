@@ -43,7 +43,7 @@
       <div class="p-4 border border-gray-200 rounded">
         <h2 class="text-2xl font-bold mb-4">Cart Summary</h2>
         <p class="mb-4">Total Items: {{ totalItems }}</p>
-        <p class="mb-4">Total Price: ${{ totalPrice.toFixed(2) }}</p>
+        <p class="mb-4">Total Price: ₦{{ totalPrice.toFixed(2) }}</p>
         <button class="bg-green-600 text-white px-6 py-2 rounded" @click="proceedToCheckout">
           Place your Order
         </button>
@@ -72,7 +72,6 @@ const cartItems = ref([])
 const getCartItems = () => {
   cartItems.value = JSON.parse(localStorage.getItem('cart')) || []
 }
-
 // Remove an item from the cart
 const removeFromCart = (itemToRemove) => {
   cartItems.value = cartItems.value.filter((item) => item.id !== itemToRemove.id)
@@ -86,7 +85,10 @@ const totalItems = computed(() => {
 })
 
 const totalPrice = computed(() => {
-  return cartItems.value.reduce((total, item) => total + item.price * item.quantity, 0)
+  return cartItems.value.reduce(
+    (total, item) => total + parseFloat(item.price.replace(/[₦,]/g, '')) * item.quantity,
+    0
+  )
 })
 
 // Function to update cart data in localStorage
@@ -110,7 +112,7 @@ const proceedToCheckout = () => {
     cartItems.value.forEach((item) => {
       message += `Product: ${item.menName}\nQuantity: ${item.quantity}\nPrice: ${item.price}\n\n`
     })
-    message += `Total Price: $${totalPrice.value.toFixed(2)}\n\nThank you!`
+    message += `Total Price: ₦${totalPrice.value.toFixed(2)}\n\nThank you!`
 
     // WhatsApp URL with pre-filled message
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`
