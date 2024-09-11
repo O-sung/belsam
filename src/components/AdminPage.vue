@@ -163,16 +163,16 @@ const submitForm = async (type) => {
     console.log(formData)
     const resp = await crud.addDocWithoutId('products', formData)
     alert(`${type.charAt(0).toUpperCase() + type.slice(1)} Perfume uploaded successfully!`)
-    // if (type === 'men') {
-    //   menPrice.value = ''
-    //   menImageFile = null
-    // } else if (type === 'women') {
-    //   womenPrice.value = ''
-    //   womenImageFile = null
-    // } else if (type === 'latest') {
-    //   latestPrice.value = ''
-    //   latestImageFile = null
-    // }
+    if (type === 'men') {
+      menPrice.value = ''
+      menImageFile = null
+    } else if (type === 'women') {
+      womenPrice.value = ''
+      womenImageFile = null
+    } else if (type === 'latest') {
+      latestPrice.value = ''
+      latestImageFile = null
+    }
   } catch (error) {
     console.error(`Error uploading ${type} perfume:`, error)
     alert(`Failed to upload ${type} perfume. Please try again.`)
