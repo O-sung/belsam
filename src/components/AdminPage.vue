@@ -233,13 +233,16 @@ const submitForm = async (type) => {
 
     // Clear the input fields after successful upload
     if (type === 'men') {
-      menPrice.value = '₦'
+      menPrice.value = ''
+      menName.value = ''
       menImageFile = null
     } else if (type === 'women') {
       womenPrice.value = ''
+      womenName.value = ''
       womenImageFile = null
     } else if (type === 'latest') {
       latestPrice.value = ''
+      latestName.value = ''
       latestImageFile = null
     }
 

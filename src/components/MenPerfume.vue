@@ -13,10 +13,25 @@
 
         <p class="mt-4 font-bold">{{ item.menName }}</p>
 
-        <div class="flex justify-between items-center mt-1 mb-3">
-          <p>{{ item.price }}</p>
+        <div class="flex flex-col items-center mt-1 mb-3">
+          <p class="mb-2">{{ item.price }}</p>
 
-          <button class="bg-[#f05d5d] px-3 py-1 rounded-lg text-white hover:bg-[#627727]">
+          <!-- Quantity Selector -->
+          <div class="flex items-center mb-2">
+            <label for="quantity-{{ item.id }}" class="mr-2">Qty:</label>
+            <input
+              type="number"
+              id="quantity-{{ item.id }}"
+              v-model.number="item.quantity"
+              min="1"
+              class="w-16 px-2 py-1 border border-gray-300 rounded"
+            />
+          </div>
+
+          <button
+            class="bg-[#f05d5d] px-3 py-1 rounded-lg text-white hover:bg-[#627727]"
+            @click="addToCart(item)"
+          >
             Add to Cart
           </button>
         </div>
@@ -30,7 +45,10 @@
       v-for="page in totalPages"
       :key="page"
       @click="currentPage = page"
-      :class="['mx-2 px-4 py-2 border', { 'bg-[#f05d5d] text-white': currentPage === page }]"
+      :class="[
+        'mx-2 px-4 py-2 border rounded-full',
+        { 'bg-[#f05d5d] text-white': currentPage === page }
+      ]"
     >
       {{ page }}
     </button>
@@ -42,6 +60,7 @@ import { ref, computed, onMounted } from 'vue'
 import { crud } from '../../services/index.mjs'
 
 const menPerfumes = ref([])
+const cart = ref([])
 
 // Fetch men's perfumes from Firestore
 const fetchMenPerfumes = async () => {
@@ -51,6 +70,11 @@ const fetchMenPerfumes = async () => {
 
     // Filter out only the men's perfumes
     const menPerfumeData = response.filter((item) => item.type === 'men')
+
+    // Initialize quantity for each item
+    menPerfumeData.forEach((item) => {
+      item.quantity = 1
+    })
 
     menPerfumes.value = menPerfumeData
   } catch (error) {
@@ -71,6 +95,32 @@ const paginatedPerfume = computed(() => {
   const end = start + itemsPerPage
   return menPerfumes.value.slice(start, end)
 })
+
+// Add to Cart functionality
+const addToCart = (item) => {
+  // Create a cart item with quantity
+  const cartItem = {
+    id: item.id,
+    menName: item.menName,
+    image: item.image,
+    price: item.price,
+    quantity: item.quantity
+  }
+
+  // Add or update the item in the cart
+  const existingItemIndex = cart.value.findIndex((cartItem) => cartItem.id === item.id)
+  if (existingItemIndex !== -1) {
+    // Update quantity if item already in cart
+    cart.value[existingItemIndex].quantity += item.quantity
+  } else {
+    // Add new item to cart
+    cart.value.push(cartItem)
+  }
+
+  alert(`${item.menName} has been added to the cart.`)
+  // Optionally, save cart to localStorage
+  localStorage.setItem('cart', JSON.stringify(cart.value))
+}
 </script>
 
 <style lang="scss" scoped></style>
