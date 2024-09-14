@@ -19,7 +19,10 @@
         <div class="flex justify-between items-center mt-1 mb-3">
           <p>{{ item.price }}</p>
 
-          <button class="bg-[#f05d5d] px-3 py-1 rounded-lg text-white hover:bg-[#627727]">
+          <button
+            class="bg-[#f05d5d] px-3 py-1 rounded-lg text-white hover:bg-[#627727]"
+            @click="addToCart()"
+          >
             Add to Cart
           </button>
         </div>
@@ -45,6 +48,7 @@ import { ref, computed, onMounted } from 'vue'
 import { crud } from '../../services/index.mjs'
 
 const latestPerfume = ref([])
+const cart = ref([])
 
 const fetchLatestPerfume = async () => {
   try {
@@ -70,6 +74,13 @@ const paginatedPerfume = computed(() => {
   const end = start + itemsPerPage
   return latestPerfume.value.slice(start, end)
 })
+
+const addToCart = (item) => {
+  cart.value.push(item)
+  alert(`${item.latestName} has been added to the cart.`)
+  // Optionally, save cart to localStorage
+  localStorage.setItem('cart', JSON.stringify(cart.value))
+}
 </script>
 
 <style lang="scss" scoped></style>

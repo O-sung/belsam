@@ -63,7 +63,7 @@ const closeHam = () => {
           <!-- Cart Icon -->
           <div class="relative ml-4">
             <RouterLink to="/cart">
-              <font-awesome-icon icon="fa-solid fa-cart-shopping" class="text-[#aace48] fa-xl" />
+              <font-awesome-icon icon="fa-solid fa-cart-shopping" class="text-white fa-xl" />
               <span
                 v-if="cartItemCount > 0"
                 class="absolute -top-2 -right-2 bg-red-600 text-white rounded-full text-xs w-5 h-5 flex items-center justify-center"

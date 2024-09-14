@@ -1,5 +1,5 @@
 <template>
-  <div class="container mx-auto mt-10 p-4">
+  <div class="container mx-auto pt-16 p-4">
     <h1 class="text-3xl font-bold mb-6">Shopping Cart</h1>
 
     <div v-if="cartItems.length > 0" class="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -43,7 +43,7 @@
       <div class="p-4 border border-gray-200 rounded">
         <h2 class="text-2xl font-bold mb-4">Cart Summary</h2>
         <p class="mb-4">Total Items: {{ totalItems }}</p>
-        <p class="mb-4">Total Price: ${{ totalPrice.toFixed(2) }}</p>
+        <p class="mb-4">Total Price: {{ totalPrice.toFixed(2) }}</p>
         <button class="bg-green-600 text-white px-6 py-2 rounded" @click="proceedToCheckout">
           Place your Order
         </button>
@@ -109,6 +109,8 @@ const proceedToCheckout = () => {
     let message = `Order Summary:\n\n`
     cartItems.value.forEach((item) => {
       message += `Product: ${item.menName}\nQuantity: ${item.quantity}\nPrice: ${item.price}\n\n`
+      message += `Product: ${item.womenName}\nQuantity: ${item.quantity}\nPrice: ${item.price}\n\n`
+      message += `Product: ${item.latestName}\nQuantity: ${item.quantity}\nPrice: ${item.price}\n\n`
     })
     message += `Total Price: $${totalPrice.value.toFixed(2)}\n\nThank you!`
 
