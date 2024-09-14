@@ -90,6 +90,7 @@ const closeHam = () => {
           <RouterLink to="/about" @click="closeHam()">About Us</RouterLink>
           <RouterLink to="/about" @click="closeHam()">Contact Us</RouterLink>
           <RouterLink to="/admin" @click="closeHam()">Admin</RouterLink>
+          <RouterLink to="/cart" @click="closeHam()">Cart</RouterLink>
         </div>
 
         <div @click="openHam()" class="z-50">
