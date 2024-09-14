@@ -115,7 +115,7 @@ onMounted(() => {
 })
 
 // WhatsApp Number of the seller (in international format)
-const whatsappNumber = '+2348165260660'
+const whatsappNumber = '+2349030756031'
 
 // Proceed to checkout action (Send WhatsApp Message)
 const proceedToCheckout = () => {
