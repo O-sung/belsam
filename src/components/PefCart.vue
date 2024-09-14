@@ -1,9 +1,8 @@
 <template>
-  <div class="container mx-auto pt-16 p-4">
+  <div class="container mx-auto pt-16 p-2">
     <h1 class="text-3xl font-bold mb-6">Shopping Cart</h1>
 
     <div v-if="cartItems.length > 0" class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-      <!-- Cart Items -->
       <div class="lg:col-span-2">
         <table class="w-full border-collapse">
           <thead>
@@ -14,18 +13,21 @@
               <th class="border-b-2 pb-2 text-left">Remove</th>
             </tr>
           </thead>
+
           <tbody>
             <tr v-for="(item, index) in cartItems" :key="index" class="border-b">
               <td class="py-4">
                 <div class="flex items-center">
                   <img :src="item.image" alt="Perfume" class="h-16 w-16 object-cover mr-4" />
-                  <span>{{ item.menName }}</span>
+                  <!-- Display the appropriate product name -->
+                  <span>{{ getProductName(item) }}</span>
                 </div>
               </td>
-              <td class="py-4">
-                {{ item.quantity }}
-              </td>
+
+              <td class="py-4">{{ item.quantity }}</td>
+
               <td class="py-4">{{ item.price }}</td>
+
               <td class="py-4">
                 <button
                   @click="removeFromCart(item)"
@@ -52,18 +54,15 @@
 
     <div v-else class="text-center">
       <h2 class="text-2xl">Your cart is empty.</h2>
-      <RouterLink to="/men" class="text-blue-500 underline mt-4 inline-block"
-        >Continue Shopping</RouterLink
-      >
+      <RouterLink to="/men" class="text-blue-500 underline mt-4 inline-block">
+        Continue Shopping
+      </RouterLink>
     </div>
   </div>
 </template>
 
 <script setup>
 import { ref, computed, onMounted } from 'vue'
-//   import { useRouter } from 'vue-router'
-
-//   const router = useRouter()
 
 // Cart items stored in localStorage
 const cartItems = ref([])
@@ -72,11 +71,24 @@ const cartItems = ref([])
 const getCartItems = () => {
   cartItems.value = JSON.parse(localStorage.getItem('cart')) || []
 }
+
 // Remove an item from the cart
 const removeFromCart = (itemToRemove) => {
   cartItems.value = cartItems.value.filter((item) => item.id !== itemToRemove.id)
   localStorage.setItem('cart', JSON.stringify(cartItems.value))
   updateCartData()
+}
+
+// Get the correct product name based on its type (men, women, or latest)
+const getProductName = (item) => {
+  if (item.menName) {
+    return item.menName
+  } else if (item.womenName) {
+    return item.womenName
+  } else if (item.latestName) {
+    return item.latestName
+  }
+  return 'Unknown Product'
 }
 
 // Compute total items and total price
@@ -85,10 +97,11 @@ const totalItems = computed(() => {
 })
 
 const totalPrice = computed(() => {
-  return cartItems.value.reduce(
-    (total, item) => total + parseFloat(item.price.replace(/[₦,]/g, '')) * item.quantity,
-    0
-  )
+  return cartItems.value.reduce((total, item) => {
+    // Ensure price exists and is a valid string
+    const itemPrice = item.price ? item.price.replace(/[₦,]/g, '') : '0'
+    return total + parseFloat(itemPrice) * item.quantity
+  }, 0)
 })
 
 // Function to update cart data in localStorage
@@ -101,7 +114,7 @@ onMounted(() => {
   getCartItems()
 })
 
-// WhatsApp Number of the seller (in international format without "+" or leading zeros)
+// WhatsApp Number of the seller (in international format)
 const whatsappNumber = '+2348165260660'
 
 // Proceed to checkout action (Send WhatsApp Message)
@@ -110,9 +123,8 @@ const proceedToCheckout = () => {
     // Create a message with all the items in the cart
     let message = `Order Summary:\n\n`
     cartItems.value.forEach((item) => {
-      message += `Product: ${item.menName}\nQuantity: ${item.quantity}\nPrice: ${item.price}\n\n`
-      message += `Product: ${item.womenName}\nQuantity: ${item.quantity}\nPrice: ${item.price}\n\n`
-      message += `Product: ${item.latestName}\nQuantity: ${item.quantity}\nPrice: ${item.price}\n\n`
+      const productName = getProductName(item)
+      message += `Product: ${productName}\nQuantity: ${item.quantity}\nPrice: ${item.price}\n\n`
     })
     message += `Total Price: ₦${totalPrice.value.toFixed(2)}\n\nThank you!`
 

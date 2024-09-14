@@ -21,7 +21,7 @@
 
           <button
             class="bg-[#f05d5d] px-3 py-1 rounded-lg text-white hover:bg-[#627727]"
-            @click="addToCart()"
+            @click="addToCart(item)"
           >
             Add to Cart
           </button>
@@ -48,7 +48,7 @@ import { ref, computed, onMounted } from 'vue'
 import { crud } from '../../services/index.mjs'
 
 const latestPerfume = ref([])
-const cart = ref([])
+// const cart = ref([])
 
 const fetchLatestPerfume = async () => {
   try {
@@ -75,11 +75,53 @@ const paginatedPerfume = computed(() => {
   return latestPerfume.value.slice(start, end)
 })
 
+// const addToCart = (item) => {
+//   const cartItem = {
+//     id: item.id,
+//     latestName: item.latestName,
+//     image: item.image,
+//     price: item.price,
+//     quantity: 1
+//   }
+
+//   const existingItemIndex = cart.value.findIndex((cartItem) => cartItem.id === item.id)
+
+//   if (existingItemIndex !== -1) {
+//     cart.value[existingItemIndex].quantity += 1
+//   } else {
+//     cart.value.push(cartItem)
+//   }
+
+//   localStorage.setItem('cart', JSON.stringify(cart.value))
+//   alert(`${item.latestName} has been added to the cart.`)
+// }
+
+// Add items to the cart and store in localStorage
 const addToCart = (item) => {
-  cart.value.push(item)
+  const existingCart = JSON.parse(localStorage.getItem('cart')) || []
+
+  const cartItem = {
+    id: item.id, // Ensure you are tracking items by ID
+    womenName: item.latestName, // Correct name field
+    image: item.image, // Add the image for display in the cart
+    price: item.price, // Ensure the price field is passed
+    quantity: 1 // Default quantity to 1 (this can be modified later)
+  }
+
+  // Check if the item already exists in the cart
+  const existingItemIndex = existingCart.findIndex((cartItem) => cartItem.id === item.id)
+
+  if (existingItemIndex !== -1) {
+    // If the item exists, update its quantity
+    existingCart[existingItemIndex].quantity += 1
+  } else {
+    // Otherwise, add it to the cart
+    existingCart.push(cartItem)
+  }
+
+  // Save the updated cart to localStorage
+  localStorage.setItem('cart', JSON.stringify(existingCart))
   alert(`${item.latestName} has been added to the cart.`)
-  // Optionally, save cart to localStorage
-  localStorage.setItem('cart', JSON.stringify(cart.value))
 }
 </script>
 

@@ -80,11 +80,32 @@ const paginatedPerfume = computed(() => {
 })
 
 // Add to Cart functionality
+// const addToCart = (item) => {
+//   cart.value.push(item)
+//   alert(`${item.menName} has been added to the cart.`)
+//   // Optionally, save cart to localStorage
+//   localStorage.setItem('cart', JSON.stringify(cart.value))
+// }
+
 const addToCart = (item) => {
-  cart.value.push(item)
-  alert(`${item.menName} has been added to the cart.`)
-  // Optionally, save cart to localStorage
+  const cartItem = {
+    id: item.id,
+    latestName: item.menName,
+    image: item.image,
+    price: item.price,
+    quantity: 1
+  }
+
+  const existingItemIndex = cart.value.findIndex((cartItem) => cartItem.id === item.id)
+
+  if (existingItemIndex !== -1) {
+    cart.value[existingItemIndex].quantity += 1
+  } else {
+    cart.value.push(cartItem)
+  }
+
   localStorage.setItem('cart', JSON.stringify(cart.value))
+  alert(`${item.menName} has been added to the cart.`)
 }
 </script>
 
