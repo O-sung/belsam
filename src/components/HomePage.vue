@@ -147,25 +147,25 @@ import { RouterLink } from 'vue-router'
 const perfume = [
   {
     id: 1,
-    perfumeImg: '../public/pef11.jpg',
+    perfumeImg: '/pef11.jpg',
     pefName: '24K',
     pefPrice: '₦5,000'
   },
   {
     id: 2,
-    perfumeImg: '../public/pef10.jpg',
+    perfumeImg: '/pef10.jpg',
     pefName: 'Colour Me',
     pefPrice: '₦5,000'
   },
   {
     id: 3,
-    perfumeImg: '../public/pef6.jpg',
+    perfumeImg: '/pef6.jpg',
     pefName: 'Wishbone',
     pefPrice: '₦5,000'
   },
   {
     id: 4,
-    perfumeImg: '../public/pef6.jpg',
+    perfumeImg: '/pef6.jpg',
     pefName: 'Wishbone',
     pefPrice: '₦5,000'
   }
