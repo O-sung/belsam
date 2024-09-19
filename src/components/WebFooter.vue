@@ -1,19 +1,13 @@
 <template>
   <div class="bg-[#aace48] text-white">
     <div class="mb-3 py-3 flex">
-      <div>
-        <p>COMPANY</p>
-        <ul>
-          <li>About Us</li>
-          <li>About Us</li>
-        </ul>
-      </div>
-
-      <div>
+      <div class="px-4">
         <p>CONNECT WITH US</p>
-        <ul>
-          <li>About Us</li>
-          <li>About Us</li>
+        <ul class="flex gap-5">
+          <li>
+            <a href="https://instagram.com/belsampefumes?igshid=NTc4MTIwNjQ2YQ==">Instagram</a>
+          </li>
+          <li><a href="https://www.youtube.com/@BELSAMPERFUME">YouTube</a></li>
         </ul>
       </div>
     </div>

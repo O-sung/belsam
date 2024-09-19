@@ -40,8 +40,7 @@ const closeHam = () => {
           <RouterLink to="/" class="text-base">Home</RouterLink>
           <RouterLink to="/men" class="text-base">Men</RouterLink>
           <RouterLink to="/women" class="text-base">Women</RouterLink>
-          <RouterLink to="/about" class="text-base">About Us</RouterLink>
-          <RouterLink to="/about" class="text-base">Contact Us</RouterLink>
+          <RouterLink to="/latest" class="text-base">Latest Arrivals</RouterLink>
           <RouterLink to="/admin" class="text-base">Admin</RouterLink>
         </div>
 
@@ -87,18 +86,31 @@ const closeHam = () => {
           <RouterLink to="/" @click="closeHam()">Home</RouterLink>
           <RouterLink to="/men" @click="closeHam()">Men</RouterLink>
           <RouterLink to="/women" @click="closeHam()">Women</RouterLink>
-          <RouterLink to="/about" @click="closeHam()">About Us</RouterLink>
-          <RouterLink to="/about" @click="closeHam()">Contact Us</RouterLink>
+          <RouterLink to="/latest" @click="closeHam()">Latest Arrivals</RouterLink>
           <RouterLink to="/admin" @click="closeHam()">Admin</RouterLink>
           <RouterLink to="/cart" @click="closeHam()">Cart</RouterLink>
         </div>
 
-        <div @click="openHam()" class="z-50">
-          <font-awesome-icon
-            :icon="isHamOpened ? 'fa-xmark' : 'fa-bars'"
-            :class="isHamOpened ? 'text-white' : 'text-white'"
-            class="fa-xl"
-          />
+        <div class="flex gap-8 items-center">
+          <div class="relative ml-4">
+            <RouterLink to="/cart" @click="closeHam()">
+              <font-awesome-icon icon="fa-solid fa-cart-shopping" class="text-white fa-xl" />
+              <span
+                v-if="cartItemCount > 0"
+                class="absolute -top-2 -right-2 bg-red-600 text-white rounded-full text-xs w-5 h-5 flex items-center justify-center"
+              >
+                {{ cartItemCount }}
+              </span>
+            </RouterLink>
+          </div>
+
+          <div @click="openHam()" class="z-50">
+            <font-awesome-icon
+              :icon="isHamOpened ? 'fa-xmark' : 'fa-bars'"
+              :class="isHamOpened ? 'text-white' : 'text-white'"
+              class="fa-xl"
+            />
+          </div>
         </div>
       </nav>
     </div>
