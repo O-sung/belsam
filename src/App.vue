@@ -138,7 +138,7 @@ export default {
 }
 </script> -->
 
-<style scoped>
+<style>
 nav {
   width: 100%;
   font-size: 12px;
@@ -158,5 +158,18 @@ nav a.router-link-exact-active:hover {
 
 nav a {
   text-decoration: none;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar {
+  width: 1px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #f05d5d;
 }
 </style>

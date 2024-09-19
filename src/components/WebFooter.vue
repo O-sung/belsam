@@ -1,7 +1,7 @@
 <template>
   <div class="bg-[#aace48] text-white">
     <div class="mb-3 py-3 flex">
-      <div class="px-4">
+      <div class="px-4" id="contact">
         <p>CONNECT WITH US</p>
         <ul class="flex gap-5">
           <li>

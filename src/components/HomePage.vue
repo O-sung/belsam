@@ -21,7 +21,7 @@
         </div>
 
         <div class="absolute bottom-4 right-4">
-          <RouterLink to="/about" class="text-white">ABOUT US &rarr;</RouterLink>
+          <a href="#contact" class="text-white">CONTACT US &rarr;</a>
         </div>
       </div>
     </div>
