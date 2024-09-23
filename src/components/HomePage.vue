@@ -21,7 +21,7 @@
         </div>
 
         <div class="absolute bottom-4 right-4">
-          <a href="#contact" class="text-white">CONTACT US &rarr;</a>
+          <a href="#contact" class="text-white md:text-lg font-bold">CONTACT US &rarr;</a>
         </div>
       </div>
     </div>

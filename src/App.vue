@@ -33,7 +33,7 @@ const closeHam = () => {
     <div class="bg-[#f05d5d] bg-opacity-100 py-2 px-3 xl:py-3">
       <nav class="hidden lg:flex justify-between items-center">
         <div>
-          <img src="/public/logo.jpg" class="w-8 h-8" />
+          <img src="/public/logo.jpg" class="w-9 h-9" />
         </div>
 
         <div class="flex justify-center gap-8 text-white">
@@ -165,7 +165,7 @@ html {
 }
 
 ::-webkit-scrollbar {
-  width: 1px;
+  width: 3px;
   height: 8px;
 }
 
