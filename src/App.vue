@@ -41,7 +41,7 @@ const closeHam = () => {
           <RouterLink to="/men" class="text-base">Men</RouterLink>
           <RouterLink to="/women" class="text-base">Women</RouterLink>
           <RouterLink to="/latest" class="text-base">Latest Arrivals</RouterLink>
-          <RouterLink to="/admin" class="text-base">Admin</RouterLink>
+          <a href="#contact" class="text-base">Contact Us</a>
         </div>
 
         <div class="flex items-center">
@@ -87,7 +87,7 @@ const closeHam = () => {
           <RouterLink to="/men" @click="closeHam()">Men</RouterLink>
           <RouterLink to="/women" @click="closeHam()">Women</RouterLink>
           <RouterLink to="/latest" @click="closeHam()">Latest Arrivals</RouterLink>
-          <RouterLink to="/admin" @click="closeHam()">Admin</RouterLink>
+          <a href="#contact" @click="closeHam()">Contact Us</a>
           <RouterLink to="/cart" @click="closeHam()">Cart</RouterLink>
         </div>
 
