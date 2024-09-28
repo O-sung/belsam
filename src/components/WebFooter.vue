@@ -28,6 +28,18 @@
               YouTube
             </a>
           </li>
+
+          <!-- <li>
+            <a
+              href="https://www.youtube.com/@BELSAMPERFUME"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center gap-2"
+            >
+              <font-awesome-icon icon="fa-brands fa-whatsapp" class="text-[#f05d5d]" />
+              WhatsApp
+            </a>
+          </li> -->
         </ul>
       </div>
     </div>
